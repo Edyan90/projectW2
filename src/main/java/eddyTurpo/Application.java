@@ -5,22 +5,31 @@ import eddyTurpo.Entities.Libro;
 import eddyTurpo.Entities.Rivista;
 import eddyTurpo.enums.TipiPeriodicita;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Application {
 
     public static void main(String[] args) {
 
         List<Book> listaArchivio = new ArrayList<>();
+        Libro libro1 = new Libro(123, "book1", 2001, 159, "autore1", "genere1");
+        Libro libro2 = new Libro(124, "book2", 2001, 159, "autore1", "genere1");
+        Libro libro3 = new Libro(125, "book3", 2001, 159, "autore1", "genere1");
+        Libro libro4 = new Libro(126, "book4", 2001, 159, "autore1", "genere1");
+        Collections.addAll(listaArchivio, libro1, libro2, libro3, libro4);
+        System.out.println(listaArchivio);
+
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
             System.out.println("Premi 1 per Aggiungi un Libro");
             System.out.println("Premi 2 Aggiungi una Rivista");
-            System.out.println("Premi 3 Esci");
+            System.out.println("Premi 3 Rimuovere un libro/rivista tramite ISBN");
+            System.out.println("Premi 4 per Ricercare un libro/rivista tramite ANNO di pubblicazione");
+            System.out.println("Premi 5 per Ricercare un libro/rivista tramite AUTORE");
+            System.out.println("Premi 6 per SALVARE su un file l'archivio creato");
+            System.out.println("Premi 7 per CARICARE e creare dal file una nuovo Archivio");
+            System.out.println("Premi 0 per USCIRE");
             System.out.print("Scegli un'opzione: ");
             int scelta = -1;
             try {
@@ -39,6 +48,19 @@ public class Application {
                     addRivista(scanner, listaArchivio);
                     break;
                 case 3:
+                    removeBook(scanner, listaArchivio);
+                    break;
+                case 4:
+                    searchBook(scanner, listaArchivio);
+                /*case 5:
+                    searchAuthor(scanner,listaArchivio);
+                case 6:
+                    saveFile();
+                case 7:
+                    loadFile();
+                    */
+
+                case 0:
                     System.out.println("Chiusura in corso...");
                     return;
                 default:
@@ -166,5 +188,37 @@ public class Application {
         Rivista rivista = new Rivista(codiceISBN, titolo, annoPub, numPagine, periodicita);
         listaArchivio.add(rivista);
         System.out.println("Rivista aggiunta con successo!");
+    }
+
+    private static void removeBook(Scanner scanner, List<Book> listaArchivio) {
+        long codiceISBN = -1;
+        while (codiceISBN == -1) {
+            System.out.print("Inserisci Codice ISBN da rimuovere: ");
+            try {
+                codiceISBN = scanner.nextLong();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero ISBN valido!");
+                scanner.nextLine();
+            }
+        }
+        Book bookRemove = null;
+        for (Book book : listaArchivio) {
+            if (book.getCodiceISBN() == codiceISBN) {
+                bookRemove = book;
+                break;
+            }
+        }
+
+        if (bookRemove != null) {
+            listaArchivio.remove(bookRemove);
+            System.out.println("Libro/Rivista rimosso con successo!");
+        } else {
+            System.out.println("Nessun libro/rivista è stato trovato con il Codice ISBN specificato.");
+        }
+    }
+
+    public static void searchBook(Scanner scanner, List<Book> listaArchivio) {
+        
     }
 }
