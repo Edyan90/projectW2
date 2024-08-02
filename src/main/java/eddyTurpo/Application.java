@@ -52,14 +52,18 @@ public class Application {
                     removeBook(scanner, listaArchivio);
                     break;
                 case 4:
-                    searchYear(scanner, listaArchivio);
+                    searchBook(scanner, listaArchivio);
                     break;
                 case 5:
+                    searchYear(scanner, listaArchivio);
+                    break;
+                case 6:
                     searchAuthor(scanner, listaArchivio);
-               /* case 6:
-                    saveFile();
                     break;
                 case 7:
+                    saveFile();
+                    break;
+                /* case 8:
                     loadFile();*/
                 case 0:
                     System.out.println("Chiusura in corso...");
@@ -286,6 +290,10 @@ public class Application {
                 }
             }
         }
+
+    }
+
+    public static void saveFile() {
 
     }
 }
