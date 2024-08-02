@@ -1,6 +1,14 @@
-Libro{CodiceISBN=123, Titolo='book1', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
-Libro{CodiceISBN=124, Titolo='book2', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
-Libro{CodiceISBN=125, Titolo='book3', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
-Libro{CodiceISBN=126, Titolo='book4', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
-Rivista{CodiceISBN=127, Titolo='rivista1', AnnoPub=2024, NumPagine=54, Periodicita=MENSILE}
+
+
+123§book1§2001§159§autore1§genere1
+124§book2§2001§159§autore1§genere1
+125§book3§2001§159§autore1§genere1
+126§book4§2001§159§autore1§genere1
+127§rivista1§2024§54§MENSILE
+
+Libro§123§libro1§2001§159§autore1§genere1
+Libro§124§libro2§2001§159§autore1§genere1
+Libro§125§libro3§2001§159§autore1§genere1
+Libro§126§libro4§2001§159§autore1§genere1
+Rivista§127§rivista1§2024§54§MENSILE
 

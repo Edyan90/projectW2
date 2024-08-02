@@ -16,10 +16,10 @@ public class Application {
     public static void main(String[] args) {
 
         List<Book> listaArchivio = new ArrayList<>();
-        Libro libro1 = new Libro(123, "book1", 2001, 159, "autore1", "genere1");
-        Libro libro2 = new Libro(124, "book2", 2001, 159, "autore1", "genere1");
-        Libro libro3 = new Libro(125, "book3", 2001, 159, "autore1", "genere1");
-        Libro libro4 = new Libro(126, "book4", 2001, 159, "autore1", "genere1");
+        Libro libro1 = new Libro(123, "libro1", 2001, 159, "autore1", "genere1");
+        Libro libro2 = new Libro(124, "libro2", 2001, 159, "autore1", "genere1");
+        Libro libro3 = new Libro(125, "libro3", 2001, 159, "autore1", "genere1");
+        Libro libro4 = new Libro(126, "libro4", 2001, 159, "autore1", "genere1");
         Rivista rivista1 = new Rivista(127, "rivista1", 2024, 54, TipiPeriodicita.MENSILE);
         Collections.addAll(listaArchivio, libro1, libro2, libro3, libro4, rivista1);
         System.out.println(listaArchivio);
@@ -311,7 +311,7 @@ public class Application {
         }
     }
 
-    /*public static void loadFile() {
+    public static void loadFile() {
         List<Book> listaArchiviodaFile = new ArrayList<>();
         File file = new File("src/info.txt");
         try {
@@ -321,11 +321,27 @@ public class Application {
         } catch (IOException e) {
             System.out.println("Houston abbiamo un problema nella creazione nuovo Archivio, passo.");
         }
-    }*/
+    }
+
     public static String genString(List<Book> listaArchivio) {
         StringBuilder gen = new StringBuilder();
         for (Book book : listaArchivio) {
-            gen.append(book.toString()).append(System.lineSeparator());
+            if (book instanceof Libro) {
+                gen.append("Libro").append("§")
+                        .append(book.getCodiceISBN()).append("§")
+                        .append(book.getTitolo()).append("§")
+                        .append(book.getAnnoPub()).append("§")
+                        .append(book.getNumPagine()).append("§")
+                        .append(((Libro) book).getAutore()).append("§")
+                        .append(((Libro) book).getGenere()).append(System.lineSeparator());
+            } else if (book instanceof Rivista) {
+                gen.append("Rivista").append("§")
+                        .append(book.getCodiceISBN()).append("§")
+                        .append(book.getTitolo()).append("§")
+                        .append(book.getAnnoPub()).append("§")
+                        .append(book.getNumPagine()).append("§")
+                        .append(((Rivista) book).getPeriodicita()).append(System.lineSeparator());
+            }
         }
         return gen.toString();
     }
