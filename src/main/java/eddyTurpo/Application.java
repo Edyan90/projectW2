@@ -22,6 +22,7 @@ public class Application {
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
+            System.out.println("------------------------------------------------------");
             System.out.println("Premi 1 per Aggiungi un Libro");
             System.out.println("Premi 2 Aggiungi una Rivista");
             System.out.println("Premi 3 Rimuovere un libro/rivista tramite ISBN");
@@ -52,6 +53,7 @@ public class Application {
                     break;
                 case 4:
                     searchBook(scanner, listaArchivio);
+                    break;
                 /*case 5:
                     searchAuthor(scanner,listaArchivio);
                 case 6:
@@ -219,6 +221,29 @@ public class Application {
     }
 
     public static void searchBook(Scanner scanner, List<Book> listaArchivio) {
-        
+        long codiceISBN = -1;
+        while (codiceISBN == -1) {
+            System.out.print("Inserisci Codice ISBN da cercare dentro l'archivio: ");
+            try {
+                codiceISBN = scanner.nextLong();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero ISBN valido!");
+                scanner.nextLine();
+            }
+        }
+
+        for (Book book : listaArchivio) {
+
+            if (book.getCodiceISBN() == codiceISBN) {
+                System.out.println("il libro trovato è: " + book);
+                break;
+            } else {
+                System.out.println("Nessun libro/rivista è stato trovato, riprova con un'altro codice ISBN");
+                break;
+            }
+
+
+        }
     }
 }
