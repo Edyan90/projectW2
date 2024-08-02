@@ -6,9 +6,11 @@ import eddyTurpo.Entities.Rivista;
 import eddyTurpo.enums.TipiPeriodicita;
 import org.apache.commons.io.FileUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.*;
 
 public class Application {
@@ -69,9 +71,9 @@ public class Application {
                 case 7:
                     saveFile(listaArchivio);
                     break;
-                /*case 8:
-                    loadFile();
-                    break;*/
+                case 8:
+                    System.out.println(loadFile());
+                    break;
                 case 0:
                     System.out.println("Chiusura in corso...");
                     return;
@@ -311,16 +313,22 @@ public class Application {
         }
     }
 
-    public static void loadFile() {
-        List<Book> listaArchiviodaFile = new ArrayList<>();
+    public static List<Book> loadFile() {
+        List<Book> nuovalistaArchivio = new ArrayList<>();
         File file = new File("src/info.txt");
-        try {
-            String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-            System.out.println(content);
-            listaArchiviodaFile.addAll(Arrays.asList(content));
+        try (BufferedReader reader = Files.newBufferedReader(file.toPath(), StandardCharsets.UTF_8)) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                Book book = parseBook(line);
+                if (book != null) {
+                    nuovalistaArchivio.add(book);
+                }
+            }
+            System.out.println("Archivio caricato dal file!");
         } catch (IOException e) {
-            System.out.println("Houston abbiamo un problema nella creazione nuovo Archivio, passo.");
+            System.out.println("Houston abbiamo un problema nella lettura del file, passo.");
         }
+        return nuovalistaArchivio;
     }
 
     public static String genString(List<Book> listaArchivio) {
@@ -344,5 +352,34 @@ public class Application {
             }
         }
         return gen.toString();
+    }
+
+    private static Book parseBook(String line) {
+        String[] parts = line.split("§");
+        if (parts[0].equals("Libro")) {
+            try {
+                long codiceISBN = Long.parseLong(parts[1]);
+                String titolo = parts[2];
+                int annoPub = Integer.parseInt(parts[3]);
+                int numPagine = Integer.parseInt(parts[4]);
+                String autore = parts[5];
+                String genere = parts[6];
+                return new Libro(codiceISBN, titolo, annoPub, numPagine, autore, genere);
+            } catch (Exception e) {
+                System.out.println("Houston abbiamo un problema nella creazione di un libro dal file ");
+            }
+        } else if (parts[0].equals("Rivista")) {
+            try {
+                long codiceISBN = Long.parseLong(parts[1]);
+                String titolo = parts[2];
+                int annoPub = Integer.parseInt(parts[3]);
+                int numPagine = Integer.parseInt(parts[4]);
+                TipiPeriodicita periodicita = TipiPeriodicita.valueOf(parts[5]);
+                return new Rivista(codiceISBN, titolo, annoPub, numPagine, periodicita);
+            } catch (Exception e) {
+                System.out.println("Houston abbiamo un problema nella creazione di una rivista dal file ");
+            }
+        }
+        return null;
     }
 }
