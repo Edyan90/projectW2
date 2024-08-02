@@ -27,7 +27,7 @@ public class Application {
                 scelta = scanner.nextInt();
                 scanner.nextLine();
             } catch (InputMismatchException e) {
-                System.out.println("inserisci un numero valido!");
+                System.out.println("Inserisci un numero valido!");
                 scanner.nextLine();
                 continue;
             }
@@ -48,16 +48,44 @@ public class Application {
     }
 
     private static void addLibro(Scanner scanner, List<Book> listaArchivio) {
-        System.out.print("Inserisci Codice ISBN: ");
-        long codiceISBN = scanner.nextLong();
-        scanner.nextLine();
+        long codiceISBN = -1;
+        while (codiceISBN == -1) {
+            System.out.print("Inserisci Codice ISBN: ");
+            try {
+                codiceISBN = scanner.nextLong();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero ISBN valido!");
+                scanner.nextLine();
+            }
+        }
+
         System.out.print("Inserisci Titolo: ");
         String titolo = scanner.nextLine();
-        System.out.print("Inserisci Anno di Pubblicazione: ");
-        int annoPub = scanner.nextInt();
-        System.out.print("Inserisci Numero di Pagine: ");
-        int numPagine = scanner.nextInt();
-        scanner.nextLine();
+
+        int annoPub = -1;
+        while (annoPub == -1) {
+            System.out.print("Inserisci Anno di Pubblicazione: ");
+            try {
+                annoPub = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un anno valido!");
+                scanner.nextLine();
+            }
+        }
+
+        int numPagine = -1;
+        while (numPagine == -1) {
+            System.out.print("Inserisci Numero di Pagine: ");
+            try {
+                numPagine = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero di pagine valido!");
+                scanner.nextLine();
+            }
+        }
+
         System.out.print("Inserisci Autore: ");
         String autore = scanner.nextLine();
         System.out.print("Inserisci Genere: ");
@@ -69,37 +97,70 @@ public class Application {
     }
 
     private static void addRivista(Scanner scanner, List<Book> listaArchivio) {
-        System.out.print("Inserisci Codice ISBN: ");
-        long codiceISBN = scanner.nextLong();
-        scanner.nextLine();
+        long codiceISBN = -1;
+        while (codiceISBN == -1) {
+            System.out.print("Inserisci Codice ISBN: ");
+            try {
+                codiceISBN = scanner.nextLong();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero ISBN valido!");
+                scanner.nextLine();
+            }
+        }
+
         System.out.print("Inserisci Titolo: ");
         String titolo = scanner.nextLine();
-        System.out.print("Inserisci Anno di Pubblicazione: ");
-        int annoPub = scanner.nextInt();
-        System.out.print("Inserisci Numero di Pagine: ");
-        int numPagine = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Seleziona Periodicità:  2. Mensile 3. Semestrale");
-        System.out.println("1. Settimanale");
-        System.out.println(" 2. Mensile");
-        System.out.println("3. Semestrale");
-        int periodicitaScelta = scanner.nextInt();
-        scanner.nextLine();
 
-        TipiPeriodicita periodicita;
-        switch (periodicitaScelta) {
-            case 1:
-                periodicita = TipiPeriodicita.SETTIMANALE;
-                break;
-            case 2:
-                periodicita = TipiPeriodicita.MENSILE;
-                break;
-            case 3:
-                periodicita = TipiPeriodicita.SEMESTRALE;
-                break;
-            default:
-                System.out.println("Periodicità non valida. Impostata a Settimanale di default.");
-                periodicita = TipiPeriodicita.SETTIMANALE;
+        int annoPub = -1;
+        while (annoPub == -1) {
+            System.out.print("Inserisci Anno di Pubblicazione: ");
+            try {
+                annoPub = scanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un anno valido!");
+                scanner.nextLine();
+            }
+        }
+
+        int numPagine = -1;
+        while (numPagine == -1) {
+            System.out.print("Inserisci Numero di Pagine: ");
+            try {
+                numPagine = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero di pagine valido!");
+                scanner.nextLine();
+            }
+        }
+
+        TipiPeriodicita periodicita = null;
+        while (periodicita == null) {
+            System.out.println("Seleziona Periodicità:");
+            System.out.println("1. Settimanale");
+            System.out.println("2. Mensile");
+            System.out.println("3. Semestrale");
+            try {
+                int periodicitaScelta = scanner.nextInt();
+                scanner.nextLine();
+                switch (periodicitaScelta) {
+                    case 1:
+                        periodicita = TipiPeriodicita.SETTIMANALE;
+                        break;
+                    case 2:
+                        periodicita = TipiPeriodicita.MENSILE;
+                        break;
+                    case 3:
+                        periodicita = TipiPeriodicita.SEMESTRALE;
+                        break;
+                    default:
+                        System.out.println("Periodicità non valida. Riprova.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un numero valido per la periodicità!");
+                scanner.nextLine();
+            }
         }
 
         Rivista rivista = new Rivista(codiceISBN, titolo, annoPub, numPagine, periodicita);
