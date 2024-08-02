@@ -1,0 +1,2 @@
+
+ARCHIVIO: [Libro{Autore='autore1', Genere='genere1', CodiceISBN=123, Titolo='book1', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=124, Titolo='book2', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=125, Titolo='book3', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=126, Titolo='book4', annoPub=2001, numPagine=159}]

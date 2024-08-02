@@ -4,7 +4,11 @@ import eddyTurpo.Entities.Book;
 import eddyTurpo.Entities.Libro;
 import eddyTurpo.Entities.Rivista;
 import eddyTurpo.enums.TipiPeriodicita;
+import org.apache.commons.io.FileUtils;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class Application {
@@ -26,10 +30,11 @@ public class Application {
             System.out.println("Premi 1 per Aggiungi un Libro");
             System.out.println("Premi 2 Aggiungi una Rivista");
             System.out.println("Premi 3 Rimuovere un libro/rivista tramite ISBN");
-            System.out.println("Premi 4 per Ricercare un libro/rivista tramite ANNO di pubblicazione");
-            System.out.println("Premi 5 per Ricercare un libro/rivista tramite AUTORE");
-            System.out.println("Premi 6 per SALVARE su un file l'archivio creato");
-            System.out.println("Premi 7 per CARICARE e creare dal file una nuovo Archivio");
+            System.out.println("Premi 4 per Ricercare un libro/rivista tramite ISBN");
+            System.out.println("Premi 5 per Ricercare un libro/rivista tramite ANNO di pubblicazione");
+            System.out.println("Premi 6 per Ricercare un libro/rivista tramite AUTORE");
+            System.out.println("Premi 7 per SALVARE su un file l'archivio creato");
+            System.out.println("Premi 8 per CARICARE e creare dal file una nuovo Archivio");
             System.out.println("Premi 0 per USCIRE");
             System.out.print("Scegli un'opzione: ");
             int scelta = -1;
@@ -61,7 +66,7 @@ public class Application {
                     searchAuthor(scanner, listaArchivio);
                     break;
                 case 7:
-                    saveFile();
+                    saveFile(listaArchivio);
                     break;
                 /* case 8:
                     loadFile();*/
@@ -293,7 +298,13 @@ public class Application {
 
     }
 
-    public static void saveFile() {
-
+    public static void saveFile(List<Book> listaArchivio) {
+        File file = new File("src/info.txt");
+        try {
+            FileUtils.writeStringToFile(file, "ARCHIVIO: " + listaArchivio + System.lineSeparator(), StandardCharsets.UTF_8, true);
+            System.out.println("Archivio salvato su file!");
+        } catch (IOException e) {
+            System.out.println("Houston abbiamo un problema, passo.");
+        }
     }
 }
