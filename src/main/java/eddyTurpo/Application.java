@@ -69,9 +69,9 @@ public class Application {
                 case 7:
                     saveFile(listaArchivio);
                     break;
-                case 8:
+                /*case 8:
                     loadFile();
-                    break;
+                    break;*/
                 case 0:
                     System.out.println("Chiusura in corso...");
                     return;
@@ -302,15 +302,16 @@ public class Application {
 
     public static void saveFile(List<Book> listaArchivio) {
         File file = new File("src/info.txt");
+        String fileStringa = genString(listaArchivio);
         try {
-            FileUtils.writeStringToFile(file, listaArchivio + System.lineSeparator(), StandardCharsets.UTF_8, true);
+            FileUtils.writeStringToFile(file, fileStringa + System.lineSeparator(), StandardCharsets.UTF_8, true);
             System.out.println("Archivio salvato su file!");
         } catch (IOException e) {
             System.out.println("Houston abbiamo un problema, passo.");
         }
     }
 
-    public static void loadFile() {
+    /*public static void loadFile() {
         List<Book> listaArchiviodaFile = new ArrayList<>();
         File file = new File("src/info.txt");
         try {
@@ -320,5 +321,12 @@ public class Application {
         } catch (IOException e) {
             System.out.println("Houston abbiamo un problema nella creazione nuovo Archivio, passo.");
         }
+    }*/
+    public static String genString(List<Book> listaArchivio) {
+        StringBuilder gen = new StringBuilder();
+        for (Book book : listaArchivio) {
+            gen.append(book.toString()).append(System.lineSeparator());
+        }
+        return gen.toString();
     }
 }

@@ -1,2 +1,6 @@
-java.util.stream.ReferencePipeline$Head@4f8e5cde
-[Libro{Autore='autore1', Genere='genere1', CodiceISBN=123, Titolo='book1', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=124, Titolo='book2', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=125, Titolo='book3', annoPub=2001, numPagine=159}, Libro{Autore='autore1', Genere='genere1', CodiceISBN=126, Titolo='book4', annoPub=2001, numPagine=159}, Rivista{Periodicita=MENSILE, CodiceISBN=127, Titolo='rivista1', annoPub=2024, numPagine=54}]
+Libro{CodiceISBN=123, Titolo='book1', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
+Libro{CodiceISBN=124, Titolo='book2', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
+Libro{CodiceISBN=125, Titolo='book3', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
+Libro{CodiceISBN=126, Titolo='book4', AnnoPub=2001, NumPagine=159, Autore='autore1', Genere='genere1'}
+Rivista{CodiceISBN=127, Titolo='rivista1', AnnoPub=2024, NumPagine=54, Periodicita=MENSILE}
+
