@@ -21,11 +21,11 @@ public class Rivista extends Book {
     @Override
     public String toString() {
         return "Rivista{" +
-                "Periodicita=" + Periodicita +
-                ", CodiceISBN=" + CodiceISBN +
+                "CodiceISBN=" + CodiceISBN +
                 ", Titolo='" + Titolo + '\'' +
-                ", annoPub=" + annoPub +
-                ", numPagine=" + numPagine +
+                ", AnnoPub=" + annoPub +
+                ", NumPagine=" + numPagine +
+                ", Periodicita=" + Periodicita +
                 '}';
     }
 }

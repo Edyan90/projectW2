@@ -29,12 +29,12 @@ public class Libro extends Book {
     @Override
     public String toString() {
         return "Libro{" +
-                "Autore='" + Autore + '\'' +
-                ", Genere='" + Genere + '\'' +
-                ", CodiceISBN=" + CodiceISBN +
+                "CodiceISBN=" + CodiceISBN +
                 ", Titolo='" + Titolo + '\'' +
-                ", annoPub=" + annoPub +
-                ", numPagine=" + numPagine +
+                ", AnnoPub=" + annoPub +
+                ", NumPagine=" + numPagine +
+                ", Autore='" + Autore + '\'' +
+                ", Genere='" + Genere + '\'' +
                 '}';
     }
 

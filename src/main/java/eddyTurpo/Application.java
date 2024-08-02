@@ -20,7 +20,8 @@ public class Application {
         Libro libro2 = new Libro(124, "book2", 2001, 159, "autore1", "genere1");
         Libro libro3 = new Libro(125, "book3", 2001, 159, "autore1", "genere1");
         Libro libro4 = new Libro(126, "book4", 2001, 159, "autore1", "genere1");
-        Collections.addAll(listaArchivio, libro1, libro2, libro3, libro4);
+        Rivista rivista1 = new Rivista(127, "rivista1", 2024, 54, TipiPeriodicita.MENSILE);
+        Collections.addAll(listaArchivio, libro1, libro2, libro3, libro4, rivista1);
         System.out.println(listaArchivio);
 
         Scanner scanner = new Scanner(System.in);
@@ -68,8 +69,9 @@ public class Application {
                 case 7:
                     saveFile(listaArchivio);
                     break;
-                /* case 8:
-                    loadFile();*/
+                case 8:
+                    loadFile();
+                    break;
                 case 0:
                     System.out.println("Chiusura in corso...");
                     return;
@@ -301,10 +303,22 @@ public class Application {
     public static void saveFile(List<Book> listaArchivio) {
         File file = new File("src/info.txt");
         try {
-            FileUtils.writeStringToFile(file, "ARCHIVIO: " + listaArchivio + System.lineSeparator(), StandardCharsets.UTF_8, true);
+            FileUtils.writeStringToFile(file, listaArchivio + System.lineSeparator(), StandardCharsets.UTF_8, true);
             System.out.println("Archivio salvato su file!");
         } catch (IOException e) {
             System.out.println("Houston abbiamo un problema, passo.");
+        }
+    }
+
+    public static void loadFile() {
+        List<Book> listaArchiviodaFile = new ArrayList<>();
+        File file = new File("src/info.txt");
+        try {
+            String content = FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+            System.out.println(content);
+            listaArchiviodaFile.addAll(Arrays.asList(content));
+        } catch (IOException e) {
+            System.out.println("Houston abbiamo un problema nella creazione nuovo Archivio, passo.");
         }
     }
 }
