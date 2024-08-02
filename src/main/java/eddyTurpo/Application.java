@@ -52,17 +52,15 @@ public class Application {
                     removeBook(scanner, listaArchivio);
                     break;
                 case 4:
-                    searchBook(scanner, listaArchivio);
+                    searchYear(scanner, listaArchivio);
                     break;
                 case 5:
                     searchAuthor(scanner, listaArchivio);
-                    break;
-                /*case 6:
+               /* case 6:
                     saveFile();
+                    break;
                 case 7:
-                    loadFile();
-                    */
-
+                    loadFile();*/
                 case 0:
                     System.out.println("Chiusura in corso...");
                     return;
@@ -264,5 +262,30 @@ public class Application {
                 }
             }
         }
+    }
+
+    public static void searchYear(Scanner scanner, List<Book> listaArchivio) {
+        int anno = -1;
+        while (anno == -1) {
+            System.out.print("Inserisci un anno di pubblicazione da cercare dentro l'archivio: ");
+            try {
+                anno = scanner.nextInt();
+                scanner.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Inserisci un valore valido!");
+                scanner.nextLine();
+            }
+
+            for (Book book : listaArchivio) {
+                if (book.getAnnoPub() == anno) {
+                    System.out.println("il libro/i trovato/i è: " + book);
+
+                } else {
+                    System.out.println("Nessun libro/rivista è stato trovato, riprova con un altro anno");
+                    break;
+                }
+            }
+        }
+
     }
 }
