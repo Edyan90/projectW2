@@ -54,9 +54,10 @@ public class Application {
                 case 4:
                     searchBook(scanner, listaArchivio);
                     break;
-                /*case 5:
-                    searchAuthor(scanner,listaArchivio);
-                case 6:
+                case 5:
+                    searchAuthor(scanner, listaArchivio);
+                    break;
+                /*case 6:
                     saveFile();
                 case 7:
                     loadFile();
@@ -244,6 +245,24 @@ public class Application {
             }
 
 
+        }
+    }
+
+    public static void searchAuthor(Scanner scanner, List<Book> listaArchivio) {
+        String autore = "";
+        while (autore.isEmpty()) {
+            System.out.print("Inserisci nome Autore da cercare dentro l'archivio: ");
+            autore = scanner.nextLine();
+
+            for (Book book : listaArchivio) {
+                if (book instanceof Libro && ((Libro) book).getAutore().equals(autore)) {
+                    System.out.println("il libro/i trovato/i è: " + book);
+
+                } else {
+                    System.out.println("Nessun libro/rivista è stato trovato, riprova con un altro Autore");
+                    break;
+                }
+            }
         }
     }
 }
