@@ -72,7 +72,7 @@ public class Application {
                     saveFile(listaArchivio);
                     break;
                 case 8:
-                    System.out.println(loadFile());
+                    loadFile();
                     break;
                 case 0:
                     System.out.println("Chiusura in corso...");
@@ -325,6 +325,7 @@ public class Application {
                 }
             }
             System.out.println("Archivio caricato dal file!");
+            System.out.println(nuovalistaArchivio);
         } catch (IOException e) {
             System.out.println("Houston abbiamo un problema nella lettura del file, passo.");
         }
